@@ -19,6 +19,16 @@ public class Card {
    private int value;//1-13
 
    public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
+
+    public Card(int userValue, String userSuit) {
+        setValue(userValue);
+        setSuit(userSuit);
+    }
+
+    public Card() {
+        // Default constructor
+    }
+
     /**
      * @return the suit
      */
@@ -46,7 +56,29 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
-   
-   
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Card card = (Card) obj;
+        return value == card.value && suit.equals(card.suit);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * value + suit.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "suit='" + suit + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }
